@@ -4,26 +4,53 @@ import java.util.Scanner;
 
 import static java.lang.System.in;
 
-
 public class TikTakToe {
 
     public static char winner = ' ';
     public static String playerName = null;
 
+    public static char printOnlyPlayers(char c) {
+        //skips the numbers, returns only the players
+        String s = String.valueOf(c);
+        if (isInt(s)) {
+            return ' ';
+        } else {
+            return s.charAt(0);
+        }
+    }
     public static void printBoard(char[][] board) {
         System.out.printf(" _ _ _ %n");
         for(int i = 0; i < 3; i++) {
             System.out.printf("|");
             for (int j = 0; j < 3; j++) {
                 if (j != 2) {
-                    System.out.printf("%c ", board[i][j]);
+                    System.out.printf("%c ", printOnlyPlayers(board[i][j]));
                 } else {
-                    System.out.printf("%c", board[i][j]);
+                    System.out.printf("%c", printOnlyPlayers(board[i][j]));
                 }
             }
             System.out.printf("|%n");
         }
         System.out.printf(" ¯ ¯ ¯ %n");
+
+        System.out.printf("For reference for the positions:%n");
+        System.out.printf(" _ _ _ %n");
+        int num = 1;
+        for(int i = 1; i <= 3; i++) {
+            System.out.printf("|");
+            for (int j = 1; j <= 3; j++) {
+                if (j != 3) {
+                    System.out.printf("%d ", num);
+                } else {
+                    System.out.printf("%d", num);
+                }
+                num++;
+            }
+            System.out.printf("|%n");
+        }
+        System.out.printf(" ¯ ¯ ¯ %n");
+
+
     }
 
     public static char returnCharOnPosition(int position, char[][] board) {
@@ -514,24 +541,26 @@ public class TikTakToe {
 
 
     public static void gameEngine(char[][] board) {
-         //block the other player before winning
         boolean decisionTaken = false;
-        int[] result = checkBeforeWinning(board, 'X');
+        // check if the computer is about to win
 
+        int[] result = checkBeforeWinning(board, 'O');
         if (result[0] == 1) {
             char cellNum = board[result[1]][result[2]];
             board[result[1]][result[2]] = 'O';
-            System.out.printf("The computer has made the following move: %c.%n", cellNum);
+            System.out.printf("The computer {O} has made the following move: %c.%n", cellNum);
             decisionTaken = true;
         }
 
-        // check if the computer is about to win
+
+        //block the other player before winning
         if (!decisionTaken) {
-            result = checkBeforeWinning(board, 'O');
+            result = checkBeforeWinning(board, 'X');
+
             if (result[0] == 1) {
                 char cellNum = board[result[1]][result[2]];
                 board[result[1]][result[2]] = 'O';
-                System.out.printf("The computer has made the following move: %c.%n", cellNum);
+                System.out.printf("The computer {O} has made the following move: %c.%n", cellNum);
                 decisionTaken = true;
             }
         }
@@ -545,7 +574,7 @@ public class TikTakToe {
             result = findBestMoveBasedOnScoreBoard(boardScore);
             char cellNum = board[result[0]][result[1]];
             board[result[0]][result[1]] = 'O';
-            System.out.printf("The computer has made the following move: %c.%n",cellNum);
+            System.out.printf("The computer {O} has made the following move: %c.%n",cellNum);
             //printBoardScore(boardScore);
         }
 
