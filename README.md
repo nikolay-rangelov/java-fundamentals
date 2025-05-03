@@ -8,7 +8,7 @@ Project naming example:
 
 In /src/ folder there will be three folders:
     Lab
-    Exercises
+    ""
     MoreExercises
 
 .java files naming example:
