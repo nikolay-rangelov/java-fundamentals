@@ -19,6 +19,9 @@ public class TikTakToe {
         }
     }
     public static void printBoard(char[][] board) {
+        int num = 1;
+        System.out.printf(" _ _ _ ");
+        System.out.printf("     ");
         System.out.printf(" _ _ _ %n");
         for(int i = 0; i < 3; i++) {
             System.out.printf("|");
@@ -29,14 +32,8 @@ public class TikTakToe {
                     System.out.printf("%c", printOnlyPlayers(board[i][j]));
                 }
             }
-            System.out.printf("|%n");
-        }
-        System.out.printf(" ¯ ¯ ¯ %n");
-
-        System.out.printf("For reference for the positions:%n");
-        System.out.printf(" _ _ _ %n");
-        int num = 1;
-        for(int i = 1; i <= 3; i++) {
+            System.out.printf("|");
+            System.out.printf("     ");
             System.out.printf("|");
             for (int j = 1; j <= 3; j++) {
                 if (j != 3) {
@@ -48,8 +45,9 @@ public class TikTakToe {
             }
             System.out.printf("|%n");
         }
+        System.out.printf(" ¯ ¯ ¯ ");
+        System.out.printf("     ");
         System.out.printf(" ¯ ¯ ¯ %n");
-
 
     }
 
