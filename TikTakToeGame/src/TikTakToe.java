@@ -381,7 +381,7 @@ public class TikTakToe {
 
         // check diagonals before winning
         if (result[0] == 0) {
-            result = checkDiagonalsBeforeWinning(board, 'X');
+            result = checkDiagonalsBeforeWinning(board, symbol);
         }
 
         return result;
@@ -584,7 +584,7 @@ public class TikTakToe {
         boolean gameWon = false;
         System.out.printf("Please, enter your name to start the game: ");
         playerName = sc.nextLine();
-        while (playerName == "") {
+        while (playerName.trim().isEmpty()) {
             System.out.printf("No input, please, enter your name to start the game: ");
             playerName = sc.nextLine();
         }
